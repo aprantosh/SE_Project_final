@@ -8,6 +8,7 @@
     ]
   },
   "hosting": {
+    "site" : "a3webpran",
     "public": "public",
     "ignore": [
       "firebase.json",
