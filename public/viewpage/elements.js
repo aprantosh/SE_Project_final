@@ -1,4 +1,5 @@
 export const root = document.getElementById('root');
+export const keyfield = document.getElementById('key'); 
 export const modalInfobox = {
     modal: new bootstrap.Modal(document.getElementById('modal-infobox'), {backdrop: 'static'}),
     tittle: document.getElementById('modal-infobox-tittle'),
@@ -15,6 +16,7 @@ export const modalpostauthElements = document.getElementsByClassName('modal-post
 export const menus = {
     signIn : document.getElementById('menu-signin'),
     tictactoe : document.getElementById('menu-tictactoe'),
+    baseball : document.getElementById('menu-baseball'),
     about : document.getElementById('menu-about'),
     signOut : document.getElementById('menu-signout'),
 }
