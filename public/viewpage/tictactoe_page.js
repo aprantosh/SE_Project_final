@@ -98,7 +98,7 @@ async function buttonPressListener(event) {
             await addTicTacToeGameHistory(gamePlay);
             info('Game Over', gameModel.status);
         } catch (e) {
-            info('Game Over', `Failed to save the game play history: ${e}`);
+            info('Game Over', `Failed to save the game play history: ${e} `);
             if (DEV) console.log('Game Over: failed to save:', e);
         }
 

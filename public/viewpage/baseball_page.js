@@ -5,9 +5,10 @@ import { currentUser } from '../controller/firebase_auth.js';
 import * as Util from './util.js';
 
 //import { TicTacToeGame, marking } from '../model/tictactoe_game.js';
-//import { info } from './util.js';
+import { info } from './util.js';
 //import { addBaseBallHistory, getBaseBallHistory } from '../controller/firestore_controller_baseball.js';
 import { DEV } from '../model/constants.js';
+import { addBaseballGameHistory, BaseballGameHistory } from '../controller/firestore_controller.js';
 
 export function addEventListeners() {
 
@@ -33,7 +34,7 @@ function rankeygen(){
     let n2 = rangenrator();
     while(n1 == n2) n2 = rangenrator();
     let n3 = rangenrator();
-    while (n1 == n2 || n2 == n3) n3 = rangenrator();
+    while (n1 == n3 || n2 == n3) n3 = rangenrator();
     
     document.getElementById('key').innerHTML=n1+","+n2+","+n3;
     return [n1,n2,n3];
@@ -45,7 +46,7 @@ export async function baseball_page() {
         Elements.root.innerHTML = unauthorizedAccess();
         return;
     }
-    //gameModel = new BaseBallGame();
+  //  gameModel = new BaseBallGame();
 
     let html  ;
     const response = await fetch('/viewpage/templates/baseball_page.html',{ cache: 'no-store'});
@@ -55,19 +56,30 @@ export async function baseball_page() {
     document.getElementById('key').innerHTML='Hello';
     x=rankeygen();
     console.log(x);
+   //info('The random Key generator ', x);
 
 
     for (let i = 0; i <= 9; i++) {
         document.getElementById(`button-${i}`).addEventListener('click', buttonPressListener);
         
     }
+    document.getElementById('button-new-game').addEventListener('click',newgameButtonListener);
+    document.getElementById('button-new-game').disabled = true;
+    document.getElementById('button-history').addEventListener('click',historyButtonEvent);
+    
 
+}
+
+function newgameButtonListener(event){
+    baseball_page();
+    document.getElementById('history').innerHTML = "Ready to Play";
+    
 }
 
 let attempt=0;
 let g1=-1,g2=-1,g3=-1;
 
-function buttonPressListener(event){
+async function buttonPressListener(event){
     let ball=0;
     let strike =0;
     const buttid = event.target.id;
@@ -132,10 +144,31 @@ function buttonPressListener(event){
 
     if(g1!=-1&&g2!=-1&&g3!=-1){
         attempt++;
+        document.getElementById('history').innerHTML+= '<br>['+ attempt+'] Guess: ' + g1 +',' + g2 + ',' + g3 +' B#: '+ball +' S#: '+strike;
         console.log('Balls: '+ball+", Strike: "+strike);
         if(g1==x[0]&&g2==x[1]&&g3==x[2]){
             console.log('winner');
+            //info('Winner You made a Clutch', winner);
             console.log(attempt);
+            document.getElementById('history').innerHTML+= '<br>( Struck Out ~~ after ' + attempt  + ' attempts )' ;
+            document.getElementById('button-new-game').disabled = false;
+
+            const gamePlay = {
+                email: currentUser.email,
+                attempts: attempt,
+                
+                timestamp: Date.now(),
+            };
+            try {
+                await addBaseballGameHistory(gamePlay);
+                
+            } catch (e) {
+                info('Game Over', `Failed to save the game play history: ${e} `);
+                if (DEV) console.log('Game Over: failed to save:', e);
+            }
+        
+
+            info('Game Over', `Struct Out at : ${attempt} attempts` );
             //updateScreen();
             for (let i = 0; i <= 9; i++) {
                 document.getElementById(`button-${i}`).disabled=true;
@@ -143,6 +176,7 @@ function buttonPressListener(event){
             attempt=0;
         }else{
             console.log('loser');
+            //info('You lose the game',loser);
             //updateScreen();
             for (let i = 0; i <= 9; i++) {
                 document.getElementById(`button-${i}`).disabled=false;
@@ -157,5 +191,38 @@ function buttonPressListener(event){
 
     }
 
+
+}
+
+async function historyButtonEvent(event) {
+    let history;
+    try {
+        history = await BaseballGameHistory(currentUser.email);
+        let html = `
+            <table class="table table-success table-striped">
+            <tr><th>Attempts</th><th>Date</th></tr>
+            <body>
+        `;
+        for (let i = 0; i < history.length; i++) {
+            html += `
+            <tr>
+            <td>
+                ${history[i].attempts}
+            </td>
+            <td>
+            ${new Date(history[i].timestamp).toLocaleString()}
+            </td>
+            </tr>
+            
+            `;
+        }
+        html += '</body></table>';
+        document.getElementById('history').innerHTML = html;
+        
+
+    } catch (e) {
+       if (DEV) console.log('ERROR; history button', e);
+       info('Failed to get game history', JSON.stringify(e));
+    }
 
 }
