@@ -3,6 +3,7 @@ import { routePath } from '../controller/route.js';
 import { unauthorizedAccess } from './unauthorized_access_message.js';
 import { currentUser } from '../controller/firebase_auth.js';
 import * as Util from './util.js';
+import * as BaseBallGame from '../model/baseball_game.js';
 
 //import { TicTacToeGame, marking } from '../model/tictactoe_game.js';
 import { info } from './util.js';
@@ -54,7 +55,7 @@ export async function baseball_page() {
     Elements.root.innerHTML = html ;
     //Elements.keyfield.innerHTML = 'Hello';
     document.getElementById('key').innerHTML='Hello';
-    x=rankeygen();
+    x= BaseBallGame.rankeygen();
     console.log(x);
    //info('The random Key generator ', x);
 
