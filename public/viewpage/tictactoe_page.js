@@ -142,7 +142,7 @@ async function historyButtonEvent() {
         history = await getTicTacToeGameHistory(currentUser.email);
         let html = `
             <table class="table table-success table-striped">
-            <tr><th>Winner</th><th>Moves</th>th>Date</th></tr>
+            <tr><th>Winner</th><th>Moves</th><th>Date</th></tr>
             <body>
         `;
         for (let i = 0; i < history.length; i++) {
