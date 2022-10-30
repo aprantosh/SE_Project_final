@@ -30,3 +30,16 @@ input {
     border-width: 0 0 2px 0;
     width: 100%;
 }
+
+
+.center{
+    width: 150px;
+      margin: 40px auto;
+      
+    }
+
+    .input-group{
+
+        width: 109px;
+        
+}
