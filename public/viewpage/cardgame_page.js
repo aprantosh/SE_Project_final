@@ -18,9 +18,9 @@ export function addEventListeners() {
 }
 
 const imageSource = {
-    back: '/images/back.png',
-    empty: '/images/empty.png',
-    logo: '/images/logo.png',
+    BACK: '/images/back.png',
+    EMPTY: '/images/empty.png',
+    LOGO: '/images/logo.png',
 };
 
 function changeimage(){
@@ -152,6 +152,8 @@ async function loan(event) {
 
 
 }
+
+
 
 function clickplus(event) {
     let idb = '';

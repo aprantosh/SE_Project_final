@@ -8,7 +8,7 @@
     ]
   },
   "hosting": {
-    "site" : "baseball-project1-pran",
+    "site" : "cardgame-project2-pneupane4",
     "public": "public",
     "ignore": [
       "firebase.json",
