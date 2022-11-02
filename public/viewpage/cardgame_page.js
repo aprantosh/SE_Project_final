@@ -56,7 +56,9 @@ export async function card_page() {
         return;
     }
     let html;
+    currentbet = 0;
     const response = await fetch('/viewpage/templates/cardgame_page.html', { cache: 'no-store' });
+    
     html = await response.text();
     Elements.root.innerHTML = html;
 
@@ -94,6 +96,7 @@ async function initbalance() {
         console.log(history.length);
         if (history.length > 0 ) {
             balance = history[0].balance;
+            
             console.log(balance);
             debt = history[0].debts;
         }else {
@@ -106,6 +109,8 @@ async function initbalance() {
        info('Failed to get game history', JSON.stringify(e));
     }
     document.getElementById('bal').innerHTML = "Balance: " + balance;
+    document.getElementById('cdebt').innerHTML = "(Debts: " + debt + " )";
+    
 
 
 }
@@ -182,9 +187,10 @@ function clickplus(event) {
 function checkplaystatus() {
     if (parseInt(document.getElementById('card1').value) > 0 || parseInt(document.getElementById('card2').value) > 0 || parseInt(document.getElementById('card3').value) > 0) {
         document.getElementById('button-play').disabled = false;
+        
     } else {
         document.getElementById('button-play').disabled = true;
-
+        
     }
 
 
@@ -193,6 +199,7 @@ function checkplaystatus() {
 function balanceupdate() {
     document.getElementById('cbet').innerHTML = "Current Bets: " + currentbet;
     document.getElementById('cdebt').innerHTML = "(Debts: " + debt + " )";
+    
 
 }
 
@@ -223,6 +230,7 @@ function newgame(event){
 
 async function playlogic(event) {
     let won=0;
+    
     if (key == 0) {
         won = parseInt(document.getElementById('card1').value);
         won = won * 3;
@@ -232,6 +240,7 @@ async function playlogic(event) {
         document.getElementById('button-play').disabled=true;
         document.getElementById('button-new-game').disabled=false;
         currentbet=0;
+        
 
     }else if (key == 1) {
         won = parseInt(document.getElementById('card2').value);
@@ -242,6 +251,7 @@ async function playlogic(event) {
         document.getElementById('button-play').disabled=true;
         document.getElementById('button-new-game').disabled=false;
         currentbet=0;
+       
 
     }else if (key == 2) {
         won = parseInt(document.getElementById('card3').value);
@@ -274,7 +284,7 @@ async function playlogic(event) {
         info('Game Over', `Failed to save the game play history: ${e} `);
         if (DEV) console.log('Game Over: failed to save:', e);
     }
-
+    document.getElementById('bal').innerHTML = "Balance: " + balance;
     
 }
 
