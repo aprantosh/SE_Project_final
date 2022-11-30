@@ -17,8 +17,9 @@ export const modalpostauthElements = document.getElementsByClassName('modal-post
 export const menus = {
     signIn : document.getElementById('menu-signin'),
     tictactoe : document.getElementById('menu-tictactoe'),
-    baseball : document.getElementById('menu-baseball'),
-    card : document.getElementById('menu-cardgame'),
+    //baseball : document.getElementById('menu-baseball'),
+    //card : document.getElementById('menu-cardgame'),
+    community : document.getElementById('menu-community'),
     about : document.getElementById('menu-about'),
     signOut : document.getElementById('menu-signout'),
 }
