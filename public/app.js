@@ -1,8 +1,8 @@
-import * as Baseball from './viewpage/baseball_page.js'
+//import * as Baseball from './viewpage/baseball_page.js'
 import * as Auth from './controller/firebase_auth.js';
 import * as About from './viewpage/about_page.js';
 import * as TicTacToe from './viewpage/tictactoe_page.js'
-import * as card from './viewpage/cardgame_page.js'
+//import * as card from './viewpage/cardgame_page.js'
 import * as Community from './viewpage/community_page.js';
 import {routing} from './controller/route.js'
 import { community_page } from './viewpage/community_page.js';

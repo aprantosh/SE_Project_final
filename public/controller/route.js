@@ -12,7 +12,7 @@ export const routePath = {
     ABOUT : '/about',
     BASEBALL : '/baseball',
     CARD : '/card',
-    COMMUNITY : './community',
+    COMMUNITY : '/community',
 
 }
 
@@ -22,7 +22,7 @@ export const routes = [
    // {path: routePath.BASEBALL, page: baseball_page },
     {path: routePath.ABOUT, page: about_page }, 
     //{path: routePath.CARD, page: card_page }, 
-    {path:routePath.COMMUNITY, page: community_page},
+    {path: routePath.COMMUNITY, page: community_page},
 ];
 
 export function routing(pathname, hash){

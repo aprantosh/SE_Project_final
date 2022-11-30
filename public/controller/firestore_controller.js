@@ -1,11 +1,12 @@
 import { getFirestore, collection, addDoc, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore.js"
 
+
 const db = getFirestore();
 
 const TicTacToeGameCollection = 'tictactoe_game';
 const BaseballGameCollection = 'baseball_game';
 const CardGameCollection = 'card_game';
-
+//const CommunityFeed = 'community_page;'
 
 export async function addCardGameHistory(gamePlay) {
     //gamePlay = {email, winner, moves, timestamp}

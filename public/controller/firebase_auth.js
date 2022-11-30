@@ -7,6 +7,7 @@ import { info } from "../viewpage/util.js";
 import { routing } from "./route.js";
 import { welcome_page } from "../viewpage/welcome_page.js";
 
+
 const auth = getAuth();
 
 export let currentUser = null; 
