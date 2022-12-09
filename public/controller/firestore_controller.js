@@ -6,7 +6,7 @@ const db = getFirestore();
 const TicTacToeGameCollection = 'tictactoe_game';
 const BaseballGameCollection = 'baseball_game';
 const CardGameCollection = 'card_game';
-const CommunityFeedCollection = 'community_feed';
+const CommunityFeedCollection = 'smil_database';
 
 export async function addCardGameHistory(gamePlay) {
     //gamePlay = {email, winner, moves, timestamp}

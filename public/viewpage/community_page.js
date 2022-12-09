@@ -55,6 +55,17 @@ async function addComment() {
     if (comment == ""){
         info('invalid data','Please Enter Some text to proceed');
     }else {
+
+        comment = `<smil>
+        <body>
+           <par>
+               <text> `+ comment+` </text>
+              
+          </par>
+          
+          
+        </body>
+      </smil>`;
         const commentData = {
             email: currentUser.email,
             timestamp: Date.now(),

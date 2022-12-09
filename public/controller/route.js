@@ -8,19 +8,19 @@ import { community_page } from "../viewpage/community_page.js";
 
 
 export const routePath = {
-    TICTACTOE : '/tictactoe',
-    ABOUT : '/about',
-    BASEBALL : '/baseball',
-    CARD : '/card',
+    // TICTACTOE : '/tictactoe',
+    // ABOUT : '/about',
+    // BASEBALL : '/baseball',
+    // CARD : '/card',
     COMMUNITY : '/community',
 
 }
 
 
 export const routes = [
-    {path: routePath.TICTACTOE, page: tictactoe_page},
-   // {path: routePath.BASEBALL, page: baseball_page },
-    {path: routePath.ABOUT, page: about_page }, 
+//     {path: routePath.TICTACTOE, page: tictactoe_page},
+//    // {path: routePath.BASEBALL, page: baseball_page },
+//     {path: routePath.ABOUT, page: about_page }, 
     //{path: routePath.CARD, page: card_page }, 
     {path: routePath.COMMUNITY, page: community_page},
 ];

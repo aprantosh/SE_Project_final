@@ -8,7 +8,7 @@
     ]
   },
   "hosting": {
-    "site" : "cardgame-project3-pneupane4",
+    "site" : "se-project-2022",
     "public": "public",
     "ignore": [
       "firebase.json",
